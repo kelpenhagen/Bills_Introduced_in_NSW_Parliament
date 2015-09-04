@@ -12,8 +12,8 @@ agent = Mechanize.new
 page = agent.get("http://www.parliament.nsw.gov.au/prod/parlment/nswbills.nsf/V3BillsListAll")
 
 page.at(:table).search(:tr)[1].search(:td)[0].text,
-page.at(:table).search(:tr)[1].search(:td)[1].text,
-page.at(:table).search(:tr)[1].search(:td)[0].at(:a)[:href]
+# page.at(:table).search(:tr)[1].search(:td)[1].text,
+# page.at(:table).search(:tr)[1].search(:td)[0].at(:a)[:href]
 
 # page.at(:table).search(:tr)[1].text.each do |row|
 # 	bill_NSW = {
@@ -29,13 +29,15 @@ page.at(:table).search(:tr)[1].search(:td)[0].at(:a)[:href]
 
 p bill_NSW
 
+
+
 # p page.at('div.content')
 #
 # # Write out to the sqlite database using scraperwiki library
 
 # ScraperWiki.save_sqlite([:bill_name, :date_scraped], bill_NSW)
 
-# end
+end
 
 # ScraperWiki.save_sqlite(["name"], {"name" => "susan", "occupation" => "software developer"})
 #
