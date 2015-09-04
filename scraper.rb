@@ -35,7 +35,7 @@ p bill_NSW
 
 # ScraperWiki.save_sqlite([:bill_name, :date_scraped], bill_NSW)
 
-end
+# end
 
 # ScraperWiki.save_sqlite(["name"], {"name" => "susan", "occupation" => "software developer"})
 #
