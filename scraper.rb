@@ -20,28 +20,23 @@ if !page.at('.bodyText').at(:table).nil?
 page.at('.bodyText').at(:table).search(:tr)[1..-1].each do |row|
 
 	bill = {
+        name: row.search(:td)[0].text,
+        url: root + row.search(:td)[0].at(:a)[:href],
+        house_of_origin: row.search(:td)[1].text
+      }
 
-		# date_scraped: Date.today,
-		name:row.search(:td)[0].text,
-		url:root + row.search (:td) [0]. at (:a) [:href],
-		house: row.search(:td)[1].text
-
-		
-		}
-
-# 
-# # Find somehing on the page using css selectors
 
 p bill
 
 
 
-# p page.at('div.content')
-#
+
 # # Write out to the sqlite database using scraperwiki library
 
 ScraperWiki.save_sqlite([:url], bill_NSW)
 
+end
+  end
 end
 
 # ScraperWiki.save_sqlite(["name"], {"name" => "susan", "occupation" => "software developer"})
