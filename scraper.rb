@@ -11,7 +11,7 @@ agent = Mechanize.new
 # # Read in a page
 page = agent.get("http://www.parliament.nsw.gov.au/prod/parlment/nswbills.nsf/V3BillsListAll")
 
-page.at(:table).search(:tr)[1].search(:td)[0].text,
+page.at(:table).search(:tr)[1].search(:td)[0].text
 # page.at(:table).search(:tr)[1].search(:td)[1].text,
 # page.at(:table).search(:tr)[1].search(:td)[0].at(:a)[:href]
 
@@ -24,10 +24,10 @@ page.at(:table).search(:tr)[1].search(:td)[0].text,
 
 # 		}
 
-# t
+# 
 # # Find somehing on the page using css selectors
 
-p bill_NSW
+# p bill_NSW
 
 
 
