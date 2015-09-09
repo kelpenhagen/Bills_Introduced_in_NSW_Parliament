@@ -12,22 +12,22 @@ agent = Mechanize.new
 
 ('A'...'Z').each do |letter|
 	root = "http://www.parliament.nsw.gov.au"
-	url = root + "/prod/parlment/nswbills.nsf/V3BillsListAll?open&vwCurr=V3AllByTitle&vwCat=#{letter}"
+	URL = root + "/prod/parlment/nswbills.nsf/V3BillsListAll?open&vwCurr=V3AllByTitle&vwCat=#{letter}"
 	page = agent.get(url)
 
 if !page.at('.bodyText').at(:table).nil?
 	page.at('.bodyText').at(:table).search(:tr)[1..-1].each do |row|
 
 
-	bill_NSW = {
+	bill = {
 
 		date_scraped: Date.today,
 
-		bill_name:search(:td)[0].text,
+		name:search(:td)[0].text,
 
-		bill_URL:root + row.search (:td) [0]. at (:a) [:href],
+		url:root + row.search (:td) [0]. at (:a) [:href],
 
-		bill_house: row.search(:td)[1].text
+		house: row.search(:td)[1].text
 
 		}
 
@@ -42,7 +42,7 @@ p bill_NSW
 #
 # # Write out to the sqlite database using scraperwiki library
 
-ScraperWiki.save_sqlite([:bill_url], bill_NSW)
+ScraperWiki.save_sqlite([:url], bill_NSW)
 
 end
 
