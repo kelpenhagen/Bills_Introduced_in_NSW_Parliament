@@ -9,25 +9,32 @@ require 'mechanize'
 agent = Mechanize.new
 #
 # # Read in a page
-page = agent.get("http://www.parliament.nsw.gov.au/prod/parlment/nswbills.nsf/V3BillsListAll")
 
-page.at(:table).search(:tr)[1].search(:td)[0].text
-# page.at(:table).search(:tr)[1].search(:td)[1].text,
-# page.at(:table).search(:tr)[1].search(:td)[0].at(:a)[:href]
+('A'...'Z').each do |letter|
+	root = "http://www.parliament.nsw.gov.au"
+	url = root + "/prod/parlment/nswbills.nsf/V3BillsListAll?open&vwCurr=V3AllByTitle&vwCat=#{letter}"
+	page = agent.get(url)
 
-# page.at(:table).search(:tr)[1].text.each do |row|
-# 	bill_NSW = {
-# 		date_scraped: Date.today,
-# 		bill_name:search(:td)[0].text,
-# 		bill_URL:search(:td)[0].at(:a)[:href].text,
-# 		bill_house: search(:td)[1].text
+if !page.at('.bodyText').at(:table).nil?
+	page.at('bodyText').at(:table).search(:tr)[1..-1].each do |row|
 
-# 		}
+
+	bill_NSW = {
+
+		date_scraped: Date.today,
+
+		bill_name:search(:td)[0].text,
+
+		bill_URL:root + row.search (:td) [0]. at (:a) [:href],
+
+		bill_house: row.search(:td)[1].text
+
+		}
 
 # 
 # # Find somehing on the page using css selectors
 
-# p bill_NSW
+p bill_NSW
 
 
 
@@ -35,7 +42,7 @@ page.at(:table).search(:tr)[1].search(:td)[0].text
 #
 # # Write out to the sqlite database using scraperwiki library
 
-# ScraperWiki.save_sqlite([:bill_name, :date_scraped], bill_NSW)
+ScraperWiki.save_sqlite([:bill_url], bill_NSW)
 
 end
 
