@@ -12,21 +12,18 @@ agent = Mechanize.new
 
 ('A'...'Z').each do |letter|
 	root = "http://www.parliament.nsw.gov.au"
-	URL = root + "/prod/parlment/nswbills.nsf/V3BillsListAll?open&vwCurr=V3AllByTitle&vwCat=#{letter}"
+	url = root + "/prod/parlment/nswbills.nsf/V3BillsListAll?open&vwCurr=V3AllByTitle&vwCat=#{letter}"
 	page = agent.get(url)
 
-if !page.at('.bodyText').at(:table).nil?
-	page.at('.bodyText').at(:table).search(:tr)[1..-1].each do |row|
 
+if !page.at('.bodyText').at(:table).nil?
+page.at('.bodyText').at(:table).search(:tr)[1..-1].each do |row|
 
 	bill = {
 
-		date_scraped: Date.today,
-
+		# date_scraped: Date.today,
 		name:search(:td)[0].text,
-
 		url:root + row.search (:td) [0]. at (:a) [:href],
-
 		house: row.search(:td)[1].text
 
 		}
