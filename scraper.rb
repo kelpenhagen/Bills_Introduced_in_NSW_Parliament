@@ -31,7 +31,7 @@ page.at('.bodyText').at(:table).search(:tr)[1..-1].each do |row|
 # 
 # # Find somehing on the page using css selectors
 
-p bill_NSW
+p bill
 
 
 
