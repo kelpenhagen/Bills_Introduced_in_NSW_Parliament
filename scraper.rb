@@ -33,7 +33,7 @@ p bill
 
 # # Write out to the sqlite database using scraperwiki library
 
-ScraperWiki.save_sqlite([:url], bill_NSW)
+ScraperWiki.save_sqlite([:url], bill)
 
 end
   end
