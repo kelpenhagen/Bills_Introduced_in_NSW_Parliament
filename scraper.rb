@@ -22,10 +22,11 @@ page.at('.bodyText').at(:table).search(:tr)[1..-1].each do |row|
 	bill = {
 
 		# date_scraped: Date.today,
-		name:search(:td)[0].text,
+		name:row.search(:td)[0].text,
 		url:root + row.search (:td) [0]. at (:a) [:href],
 		house: row.search(:td)[1].text
 
+		
 		}
 
 # 
