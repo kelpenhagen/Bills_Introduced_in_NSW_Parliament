@@ -16,7 +16,7 @@ agent = Mechanize.new
 	page = agent.get(url)
 
 if !page.at('.bodyText').at(:table).nil?
-	page.at('bodyText').at(:table).search(:tr)[1..-1].each do |row|
+	page.at('.bodyText').at(:table).search(:tr)[1..-1].each do |row|
 
 
 	bill_NSW = {
